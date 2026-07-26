@@ -28,7 +28,7 @@ export function Heart({ count = 10 }) {
 
   return (
     <div
-      className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
+      className="pointer-events-none fixed inset-0 z-30 overflow-hidden"
       aria-hidden="true"
     >
       {hearts.map((h) =>

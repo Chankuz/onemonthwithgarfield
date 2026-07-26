@@ -51,7 +51,7 @@ export function PhotoBooth({ data }) {
         {/* The Card */}
         <motion.div
           ref={stripRef}
-          className="bg-cream-50 w-[260px] p-4 flex flex-col gap-3 shadow-lg border border-cream-200/50"
+          className="bg-cream-50 w-[260px] p-4 flex flex-col gap-3 shadow-lg border border-cream-200/50 will-change-transform"
           initial={{ rotate: -2, y: 50, opacity: 0 }}
           whileInView={{ rotate: -2, y: 0, opacity: 1 }}
           whileHover={{
