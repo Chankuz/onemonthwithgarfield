@@ -1,35 +1,9 @@
-import { useRef, useState } from "react";
-import { toPng } from "html-to-image";
-import { Download } from "lucide-react";
+import { useRef } from "react";
 import { motion } from "framer-motion";
 import { FadeInSection } from "./shared/FadeInSection";
 
 export function PhotoBooth({ data }) {
   const stripRef = useRef(null);
-  const [isDownloading, setIsDownloading] = useState(false);
-
-  const downloadImage = async () => {
-    if (stripRef.current === null) return;
-    try {
-      setIsDownloading(true);
-      const dataUrl = await toPng(stripRef.current, {
-        quality: 1,
-        pixelRatio: 2, // High quality download
-        style: {
-          transform: "none", // Reset rotation for download
-          boxShadow: "none",
-        },
-      });
-      const link = document.createElement("a");
-      link.download = "our-photobooth.png";
-      link.href = dataUrl;
-      link.click();
-    } catch (err) {
-      console.error("Failed to download image", err);
-    } finally {
-      setIsDownloading(false);
-    }
-  };
 
   return (
     <section className="py-20 md:py-32 px-4 relative overflow-hidden flex flex-col items-center justify-center">
@@ -39,7 +13,7 @@ export function PhotoBooth({ data }) {
             Photo Booth
           </h2>
           <p className="text-ink/60 text-sm">
-            เค้าอยากไปถ่าย photo booth กับกาฟิวววว🐈 (โหลดได้น้าา)
+            เค้าอยากไปถ่าย photo booth กับกาฟิวววว🐈
           </p>
         </div>
       </FadeInSection>
@@ -92,20 +66,6 @@ export function PhotoBooth({ data }) {
             </span>
           </div>
         </motion.div>
-      </FadeInSection>
-
-      {/* Download Button */}
-      <FadeInSection delay={0.4} className="mt-16">
-        <button
-          onClick={downloadImage}
-          disabled={isDownloading}
-          className="flex items-center gap-2 px-6 py-3 bg-white/50 backdrop-blur-sm border border-caramel-400/30 text-ink rounded-full shadow-sm hover:bg-cream-100 transition-colors disabled:opacity-50"
-        >
-          <Download className="w-4 h-4 text-caramel-500" />
-          <span className="text-sm font-medium">
-            {isDownloading ? "Downloading..." : "Save this strip"}
-          </span>
-        </button>
       </FadeInSection>
     </section>
   );
